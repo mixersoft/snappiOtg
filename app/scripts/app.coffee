@@ -2,14 +2,14 @@
 
 ###*
  # @ngdoc overview
- # @name onTheGoApp
+ # @name snappiOtgApp
  # @description
- # # onTheGoApp
+ # # snappiOtgApp
  #
  # Main module of the application.
 ###
 angular
-  .module('onTheGoApp', [
+  .module('snappiOtgApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

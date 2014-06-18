@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name onTheGoApp.controller:AboutCtrl
+ # @name snappiOtgApp.controller:AboutCtrl
  # @description
  # # AboutCtrl
- # Controller of the onTheGoApp
+ # Controller of the snappiOtgApp
 ###
-angular.module('onTheGoApp')
+angular.module('snappiOtgApp')
   .controller 'AboutCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
