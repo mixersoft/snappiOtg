@@ -16,12 +16,18 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
+    'mgcrea.ngStrap'
   ])
-  .config ($routeProvider) ->
+  .constant('version', 'v0.1.0')
+  .config ($locationProvider, $routeProvider) ->
+    $locationProvider.html5Mode  false
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/settings',
+        templateUrl: 'views/settings.html'
+        controller: 'SettingsCtrl'
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'

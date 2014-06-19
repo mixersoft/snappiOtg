@@ -33,16 +33,21 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-      <div class="header clearfix">
-        <div class="clearfix">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
+        <div class="navbar navbar-inverse" role="navigation" bs-navbar>
+          <div class='navbar-header'>
+            <div data-template="views/nav-menu.html" data-animation="am-fade-and-slide-left" data-placement="left" title="Menu" data-container="body" bs-aside>
+              <ul class="nav navbar-nav visible-sm visible-xs">
+                <li><a><i class='fa fa-bars fa-lg'></i></a></li>
+              </ul>
+            </div>
+            <!-- brand  -->
+          </div>
+          <ul class="nav navbar-nav pull-right hidden-xs">
+            <li data-match-route="/$"><a ng-href="#/">Home</a></li>
+            <li data-match-route="/about"><a ng-href="#/about">About</a></li>
+            <li data-match-route="/settings"><a ng-href="#/settings">Settings</a></li>
+          </ul>
         </div>
-        <h3 class="text-muted">On-The-Go</h3>
-      </div>
 
       <div ng-view=""></div>
 

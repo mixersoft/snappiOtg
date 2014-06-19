@@ -1,5 +1,34 @@
 @import 'colors';
+@import 'responsive';
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
 
 body {
-	background-color: $snappi-darkblue;
+  background-color: $snappi-yellow;
+}
+
+.navbar.navbar-inverse {
+  @include respondto(phone, tablet-portrait) {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  color: white;
+  ul.nav {
+    li.active {
+      color: white;
+    }
+  }
 }
