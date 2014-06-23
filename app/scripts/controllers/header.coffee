@@ -2,13 +2,13 @@
 
 ###*
  # @ngdoc function
- # @name snappiOtgApp.controller:CommonCtrl
+ # @name snappiOtgApp.controller:HeaderCtrl
  # @description
- # # CommonCtrl
+ # # HeaderCtrl
  # Controller of the snappiOtgApp
 ###
 angular.module('snappiOtgApp')
-  .controller 'CommonCtrl', ($scope) ->
+  .controller 'HeaderCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
