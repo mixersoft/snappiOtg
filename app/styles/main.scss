@@ -3,6 +3,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+@import 'responsive';
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -70,8 +72,11 @@ body {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
+  
+  @include respondto(tablet-portrait) {
+    .container {
+      max-width: 730px;
+    }
   }
 
   /* Remove the padding we set earlier */

@@ -6,3 +6,15 @@ $snappi-orange:         #F16122;
 $snappi-yellow:         #FDF9D0;
 $snappi-darkblue:       #152437;   
 $snappi-peach:          #E9C1C1;
+
+
+@mixin copy-light-on-dark {
+	color           :	$snappi-yellow;
+	border-color    : $snappi-yellow;
+	background-color: $snappi-darkblue;
+}
+
+@mixin copy-dark-on-light {
+	color           :$snappi-red;
+	background-color: white;
+}

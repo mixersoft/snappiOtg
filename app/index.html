@@ -32,26 +32,38 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-        <div class="navbar navbar-inverse" role="navigation" bs-navbar>
-          <div class='navbar-header'>
-            <div data-template="views/nav-menu.html" data-animation="am-fade-and-slide-left" data-placement="left" title="Menu" data-container="body" bs-aside>
-              <ul class="nav navbar-nav visible-sm visible-xs">
-                <li><a><i class='fa fa-bars fa-lg'></i></a></li>
-              </ul>
-            </div>
-            <!-- brand  -->
+    <header class="navbar navbar-inverse" role="navigation" bs-navbar>
+      <div class="container">
+        <div class='navbar-header'>
+          <div>
+            <ul class="nav navbar-nav visible-sm visible-xs">
+              <li ng-click='menuAsideShow()'><a><i class='fa fa-bars fa-lg'></i></a></li>
+            </ul>
           </div>
-          <ul class="nav navbar-nav pull-right hidden-xs">
-            <li data-match-route="/$"><a ng-href="#/">Home</a></li>
-            <li data-match-route="/about"><a ng-href="#/about">About</a></li>
-            <li data-match-route="/settings"><a ng-href="#/settings">Settings</a></li>
-          </ul>
+          <!-- brand  -->
         </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+          <li data-match-route="/$"><a ng-href="#/">Home</a></li>
+          <li data-match-route="/about"><a ng-href="#/about">About</a></li>
+          <li data-match-route="/settings"><a ng-href="#/settings">Settings</a></li>
+        </ul>
+      </div>
+    </header>
 
-      <div ng-view=""></div>
 
-      <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 hidden-sm hidden-xs">
+          <div ng-include="'views/sidebar-menu.html'" class="bs-sidebar hidden-print" role="complementary" data-offset-top="-80" bs-affix></div>
+        </div>
+        <div class="col-md-10">
+          <div ng-view=""></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
         <p><span class="fa fa-heart"></span> from the Yeoman team</p>
       </div>
     </div>
