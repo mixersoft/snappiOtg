@@ -16,24 +16,15 @@ angular.module('snappiOtgApp')
       'Karma'
     ]
 
-
-    menuAside = $aside {
-      scope     : $scope
-      # template: 'views/sidebar-menu.html'
-      contentTemplate   : 'views/sidebar-menu.html'
-      container : 'header.navbar'
-      title     : 'aside menu'
-      placement : 'left'
-      animation : 'am-fade-and-slide-left'
-      show      : false
+    $scope.menuAside = {
+      title: 'Menu'
     }
 
-    menuAside.$promise.then ()->
-      console.log "aside template loaded"
 
-
-    $scope.menuAsideShow = ()->
-      menuAside.show()
+    # $scope.menuAsideShow = ()->
+    #   return menuAside.show() if menuAside?
+    #   # find menuAside from markup
+    #   angular.element document.getElementById('header').$scope().$show()
 
     return;
       

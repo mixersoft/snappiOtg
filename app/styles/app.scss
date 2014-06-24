@@ -41,10 +41,15 @@ header .container > * {
     border-right: 2px solid $snappi-darkred;
   }
   .nav {
+    /* nested .nav */
     padding-left: 10px;
-    /*display: none;*/
+  }
+  .nav {
+    /* display:none; means only one .nav .nav open at a time */
+    display: none; 
      li.active > a {
       border-right: 1px solid $snappi-darkred;
+      display: block;
     }
   }
   .active .nav {
@@ -60,5 +65,24 @@ header.navbar .aside .aside-dialog {
     .sidebar-menu {
 
     }
+  }
+}
+
+.bs-sidebar.affix {
+   width: percentage(2 / 12);
+   padding-right: 3.8%;
+}
+
+.nav {
+  &.affix {
+
+  }
+
+  &.affix-top {
+
+  }
+
+  &.affix-bottom {
+
   }
 }
