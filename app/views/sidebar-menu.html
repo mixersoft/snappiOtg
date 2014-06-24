@@ -1,11 +1,21 @@
 
-<ul class="nav">
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
-  <li bs-scrollspy data-target="#xxx"><a href="#xxx">Xxx</a></li>
+<ul class="nav sidebar-menu" ng-click="$hide()" bs-scrollspy-list >
+  <li data-target="#main"><a href="#main" ng-href="##main">Main</a>
+    <ul class="nav bs-sidenav">
+      <li data-target="#main-html5"><a href="#main-html5" ng-href="##main-html5">HTML5</a></li>
+      <li data-target="#main-angular"><a href="#main-angular" ng-href="##main-angular" >Angular</a></li>
+      <li data-target="#main-karma"><a href="#main-karma" ng-href="##main-karma">Karma</a></li>
+    </ul>
+  </li>
+  <li data-target="#about"><a href="#about">About</a></li>
+  <li data-target="#settings"><a href="#settings">Settings</a>
+    <ul class="nav bs-sidenav">
+      <li data-target="#settings-html5"><a href="#settings-html5" ng-href="#/settings#settings-html5">HTML5</a></li>
+      <li data-target="#settings-angular"><a href="#settings-angular" ng-href="#/settings#settings-angular" >Angular</a></li>
+      <li data-target="#settings-karma"><a href="#settings-karma" ng-href="#/settings#settings-karma">Karma</a></li>
+    </ul>
+  </li>
+  <li data-target="#xxx"><a href="#xxx">Xxx</a></li>
 </ul>
 
 

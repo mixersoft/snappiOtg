@@ -8,7 +8,7 @@
  # Controller of the snappiOtgApp
 ###
 angular.module('snappiOtgApp')
-  .controller 'HeaderCtrl', ($scope, $aside) ->
+  .controller 'HeaderCtrl', ($scope, $aside, $location, $anchorScroll) ->
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
@@ -34,5 +34,7 @@ angular.module('snappiOtgApp')
 
     $scope.menuAsideShow = ()->
       menuAside.show()
+
+    return;
       
 

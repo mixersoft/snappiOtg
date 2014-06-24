@@ -33,11 +33,32 @@ header .container > * {
   }
 }
 
-.navbar .aside .aside-dialog {
+.sidebar-menu.nav {
+  li:hover > a {
+    border-right: 1px solid $snappi-darkred;
+  }
+  > li.active > a {
+    border-right: 2px solid $snappi-darkred;
+  }
+  .nav {
+    padding-left: 10px;
+    /*display: none;*/
+     li.active > a {
+      border-right: 1px solid $snappi-darkred;
+    }
+  }
+  .active .nav {
+    display: block
+  }
+}
+
+header.navbar .aside .aside-dialog {
   .aside-header {
     @include copy-light-on-dark;
   }
   .aside-body {
+    .sidebar-menu {
 
+    }
   }
 }

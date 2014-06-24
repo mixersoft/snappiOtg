@@ -25,6 +25,9 @@ angular
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/main',
+        templateUrl: 'views/main.html'
+        controller: 'MainCtrl'  
       .when '/settings',
         templateUrl: 'views/settings.html'
         controller: 'SettingsCtrl'
@@ -33,4 +36,6 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
+  .run ($rootScope, $location, $anchorScroll, $timeout, $routeParams)->
+    return
 
