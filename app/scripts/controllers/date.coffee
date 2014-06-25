@@ -8,7 +8,7 @@
  # Controller of the snappiOtgApp
 ###
 angular.module('snappiOtgApp')
-  .controller 'DateCtrl', ($scope, $dateParser) ->
+  .controller 'DateCtrl', ($scope, $location, $dateParser) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
@@ -97,6 +97,10 @@ angular.module('snappiOtgApp')
       # target = target.parentNode while target.tagName != 'BUTTON'
       angular.element(target).toggleClass "selected"
       return
+
+    $scope.goto = (target)->
+      console.log target
+      $location.path(target)  
 
     init()
 
