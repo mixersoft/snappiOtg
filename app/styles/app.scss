@@ -73,16 +73,40 @@ header.navbar .aside .aside-dialog {
    padding-right: 3.8%;
 }
 
-.nav {
-  &.affix {
-
+#calendar {
+  .datepicker.dropdown-menu button {
+    outline: 0;
+    border: 0;
   }
+}
 
-  &.affix-top {
-
-  }
-
-  &.affix-bottom {
-
-  }
+#date {
+  .camera-roll-moment {
+    > .list-group-item {
+      padding: 0;
+    }
+    .camera-roll-date {
+      .btn.date {
+        color: $snappi-yellow;
+        background-color: $snappi-darkblue;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; 
+        .day {
+          color: white;
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+        &.selected {
+          color: $snappi-red;
+        }
+      }
+      li {
+        padding: 0;
+        img {
+          border: 1px solid transparent;
+          background-color: lightgray
+        }
+      }
+    }
+  } 
 }

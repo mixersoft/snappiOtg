@@ -1,0 +1,35 @@
+
+<div id="calendar">
+  <h4>Choose Your Days</h4>
+  <p>Choose the days that you'll be On-the-Go and we'll scan every photo taken on those days</p>
+  <form name="calendarDatepickerForm" class="form-inline" role="form">
+    <!-- Date range example -->
+    <div class="form-group">
+      <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range <small>(dynamic)</small></label><br>
+      <div class="form-group">
+        <input type="text" class="form-control from-date" ng-model="fromDate" placeholder="From" 
+        bs-datepicker
+        data-min-date="{{todayDate}}" data-max-date="{{toDate}}"
+        data-autoclose="false"
+        data-trigger="focus"
+        data-start-view="0"
+        data-start-week="1"
+        >
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control to-date" ng-model="toDate" placeholder="To" 
+        bs-datepicker
+        data-min-date="{{fromDate}}"
+        data-autoclose="false"
+        data-trigger="focus"
+        data-start-view="0"
+        data-placement="bottom-right"
+        data-start-week="1"
+        >
+      </div>
+    </div>
+  </form>
+
+  <button class="btn btn-info btn-lg" ng-click='goto("/date")'>Choose Dates from my Camera Roll</button>
+  <p>&nbsp;</p>
+</div>

@@ -27,7 +27,13 @@ angular
         controller: 'MainCtrl'
       .when '/main',
         templateUrl: 'views/main.html'
-        controller: 'MainCtrl'  
+        controller: 'MainCtrl' 
+      .when '/calendar',
+        templateUrl: 'views/calendar.html'
+        controller: 'CalendarCtrl' 
+      .when '/date',
+        templateUrl: 'views/date.html'
+        controller: 'DateCtrl'                  
       .when '/settings',
         templateUrl: 'views/settings.html'
         controller: 'SettingsCtrl'
