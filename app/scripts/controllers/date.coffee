@@ -58,14 +58,15 @@ angular.module('snappiOtgApp')
       DAY_MS = 24*60*60*1000 
       dates = _.keys cameraRollDates
       dates.sort()
+      # console.log dates
 
       # cluster into moments
       _current = _last = null
       moments = _.reduce dates, (result, k)->
           date = if _.isDate(k) then k else new Date(k)
-          if _current? && _last? 
+          if _current? 
             if date.setHours(0,0,0,0) == _last + DAY_MS # next day
-              _last = date
+              _last = date.setHours(0,0,0,0)
               _current.days[k] = cameraRollDates[k]
             else 
               _current = _last = null    
@@ -80,13 +81,27 @@ angular.module('snappiOtgApp')
 
           return result
         , {}
-      # console.log moments 
+      console.log moments 
       return moments
+
+    # reformat object as an array of {key:, value: }
+    orderMomentsByDescendingKey = (o, levels=1)->
+      keys = _.keys( o ).sort().reverse()
+      recurse = levels - 1
+      reversed = _.map keys, (k)->
+        item = { key: k }
+        item.value = if recurse > 0 then orderMomentsByDescendingKey( o[k], recurse ) else o[k]
+        # console.log item
+        return item
+      console.log reversed if levels==2
+      return reversed
+
+
 
     init = ()->
       setSizes()
       $scope.options = options
-      $scope.cameraRollMoments = parseMoments(TEST_DATA)
+      $scope.cameraRollMoments = orderMomentsByDescendingKey parseMoments(TEST_DATA), 2
 
     
     $scope.cameraRollMoments = null

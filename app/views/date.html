@@ -1,26 +1,31 @@
 
 <div id="date">
   <h4>Choose Days From Your Camera Roll</h4>
-  <p>Choose days from your Camera Roll and we'll scan every photo taken on those days</p>
+  <div class="row">
+    <div class="col-md-6">
+    <p>Choose days from your Camera Roll and we'll scan every photo taken on those days</p>
+    </div>
+    <div class="col-md-6">
+    <button class="btn btn-info btn-lg" ng-click='goto("/calendar")'>Choose Dates from a Calendar</button>
+    </div>
+  </div>
+  <hr>
   <form name="dateDatepickerForm" class="form-inline" role="form">
-    <ul class="list-group camera-roll-moment" ng-repeat="moment in cameraRollMoments" >
-      <li class="list-group-item camera-roll-date"
-      ng-repeat="(day, photos) in moment"
-      >
-        <ul class="list-inline">
-          <button class="btn {{options.btnSize}} date" ng-click="select($event)">
-            <div>{{day | date:'dd MMM'}}</div>
-            <div class="day">{{day | date:'EEE'}}</div>
-          </button>
-          <li ng-repeat="photo in photos | limitTo:options.thumbnailLimit"><img ng-src="http://lorempixel.com/{{options.thumbnailSize}}/{{options.thumbnailSize}}?{{photo}}" title="Photo {{photo}}" 
-          width="{{options.thumbnailSize}}" 
-          height="{{options.thumbnailSize}}"></li>
-          <li ng-show="{{photos.length > options.thumbnailLimit}}"><span class="badge pull-right">{{photos.length}}</span></li>
-        </ul>
-      </li>
-    </ul>
   </form>
-
-  <button class="btn btn-info btn-lg" ng-click='goto("/calendar")'>Choose Dates from a Calendar</button>
-  <p>&nbsp;</p>
+  <ul class="list-group camera-roll-moment" ng-repeat="moment in cameraRollMoments" >
+    <li class="list-group-item camera-roll-date"
+    ng-repeat="day in moment.value"
+    > 
+      <ul class="list-inline">
+        <button class="btn {{options.btnSize}} date" ng-click="select($event)">
+          <div>{{day.key | date:'dd MMM'}}</div>
+          <div class="day">{{day.key | date:'EEE'}}</div>
+        </button>
+        <li ng-repeat="photo in day.value | limitTo:options.thumbnailLimit"><img ng-src="http://lorempixel.com/{{options.thumbnailSize}}/{{options.thumbnailSize}}?{{photo}}" title="Photo {{photo}}" 
+        width="{{options.thumbnailSize}}" 
+        height="{{options.thumbnailSize}}"></li>
+        <li ng-show="{{photos.length > options.thumbnailLimit}}"><span class="badge pull-right">{{photos.length}}</span></li>
+      </ul>
+    </li>
+  </ul>
 </div>
