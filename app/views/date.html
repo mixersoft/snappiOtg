@@ -1,17 +1,25 @@
 
 <div id="date">
-  <h4>Choose Days From Your Camera Roll</h4>
-  <div class="row">
-    <div class="col-md-6">
-    <p>Choose days from your Camera Roll and we'll scan every photo taken on those days</p>
+  <div class="section-header panel" >
+    <div class="panel-heading">
+      <h3 class="panel-title">Choose Days From Your Camera Roll</h3>
     </div>
-    <div class="col-md-6">
-    <button class="btn btn-info btn-lg" ng-click='goto("/calendar")'>Choose Dates from a Calendar</button>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+        <p>Choose days from your Camera Roll and we'll scan every photo taken on those days</p>
+        </div>
+        <div class="col-md-6">
+        <button class="btn btn-info btn-lg" ng-click='goto("/calendar")'>Choose Days from a Calendar</button>
+        </div>
+      </div>
+      <form name="dateDatepickerForm" class="form-inline" role="form">
+      </form>
+    </div>
+    <div class="panel-footer pull-down center-block text-center">
+      <i class="fa fa-chevron-down"></i>
     </div>
   </div>
-  <hr>
-  <form name="dateDatepickerForm" class="form-inline" role="form">
-  </form>
   <ul class="list-group camera-roll-moment" ng-repeat="moment in cameraRollMoments" >
     <li class="list-group-item camera-roll-date"
     ng-repeat="day in moment.value"

@@ -81,6 +81,35 @@ header.navbar .aside .aside-dialog {
 }
 
 #date {
+  .section-header.panel {
+    background-color: $snappi-darkblue;
+    border-color: $snappi-darkblue;
+    z-index: 10;
+    .panel-heading, .panel-footer {
+      color: $snappi-yellow;
+    }
+    .panel-body {
+      background-color: white;
+    }
+    .panel-footer {
+      display: none;
+      i {
+        padding: 2px 8px;
+      }
+    }
+    /* bs-affix styling not working */
+    &.affix {
+      background-color: transparent;
+      position: fixed;
+      top: -145px;
+      .panel-heading, .panel-footer {
+        background-color: rgba($snappi-darkblue, 0.7);
+      }
+      .panel-heading, .panel-body {
+        height: 41px;
+      }
+    }
+  }
   .camera-roll-moment {
     > .list-group-item {
       padding: 0;
