@@ -73,6 +73,23 @@ header.navbar .aside .aside-dialog {
    padding-right: 3.8%;
 }
 
+.section-header.panel {
+  background-color: none;
+  border-color: $snappi-darkblue;
+  z-index: 10;
+  .panel-heading, .panel-footer {
+    color: $snappi-yellow;
+    background-color: $snappi-darkblue;
+  }
+  .panel-body {
+    background-color: white;
+  }
+  .panel-footer i.pull-down {
+    padding: 0 8px;
+    display: none;
+  }
+}
+
 #calendar {
   .datepicker.dropdown-menu button {
     outline: 0;
@@ -80,23 +97,10 @@ header.navbar .aside .aside-dialog {
   }
 }
 
+
+
 #date {
   .section-header.panel {
-    background-color: $snappi-darkblue;
-    border-color: $snappi-darkblue;
-    z-index: 10;
-    .panel-heading, .panel-footer {
-      color: $snappi-yellow;
-    }
-    .panel-body {
-      background-color: white;
-    }
-    .panel-footer {
-      display: none;
-      i {
-        padding: 2px 8px;
-      }
-    }
     /* bs-affix styling not working */
     &.affix {
       background-color: transparent;
@@ -104,6 +108,9 @@ header.navbar .aside .aside-dialog {
       top: -145px;
       .panel-heading, .panel-footer {
         background-color: rgba($snappi-darkblue, 0.7);
+        .pull-down {
+          display: block;
+        }
       }
       .panel-heading, .panel-body {
         height: 41px;
