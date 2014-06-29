@@ -1,0 +1,17 @@
+ <!-- template for directives/moment.js  -->
+<ul class="list-group otg-moment" ng-repeat="moment in moments" >
+  <li class="list-group-item camera-roll-date"
+  ng-repeat="day in moment.value"
+  > 
+    <ul class="list-inline">
+      <button class="btn {{options.btnSize}} date" ng-click="select($event)">
+        <div>{{day.key | date:'dd MMM'}}</div>
+        <div class="day">{{day.key | date:'EEE'}}</div>
+      </button>
+      <li ng-repeat="photo in day.value | limitTo:options.thumbnailLimit"><img ng-src="http://lorempixel.com/{{options.thumbnailSize}}/{{options.thumbnailSize}}?{{photo}}" title="Photo {{photo}}" 
+      width="{{options.thumbnailSize}}" 
+      height="{{options.thumbnailSize}}"></li>
+      <li ng-show="{{day.value.length > options.thumbnailLimit}}"><span class="badge pull-right">{{day.value.length}}</span></li>
+    </ul>
+  </li>
+</ul>

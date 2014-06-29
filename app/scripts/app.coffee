@@ -33,7 +33,13 @@ angular
         controller: 'CalendarCtrl' 
       .when '/date',
         templateUrl: 'views/date.html'
-        controller: 'DateCtrl'                  
+        controller: 'DateCtrl'   
+      .when '/timeline',
+        templateUrl: 'views/timeline.html'
+        controller: 'TimelineCtrl'  
+      .when '/timeline/gallery/:id',
+        templateUrl: 'views/timeline.html'
+        controller: 'TimelineCtrl'                          
       .when '/settings',
         templateUrl: 'views/settings.html'
         controller: 'SettingsCtrl'

@@ -99,7 +99,7 @@ header.navbar .aside .aside-dialog {
 
 
 
-#date {
+#date, #timeline {
   .section-header.panel {
     /* bs-affix styling not working */
     &.affix {
@@ -117,7 +117,7 @@ header.navbar .aside .aside-dialog {
       }
     }
   }
-  .camera-roll-moment {
+  .otg-moment, .camera-roll-moment {
     > .list-group-item {
       padding: 0;
     }

@@ -20,37 +20,10 @@ angular.module('snappiOtgApp')
         'Karma'
       ]
 
-      #.btn-lg=74, .btn=58
-      options = defaults = {
-        btnSize: 'btn-lg' 
-        thumbnailSize: (74-2)
-      }
-      
-      setSizes = ()->
-        # also $window.on 'resize'  
-        w = document.getElementById('date').clientWidth
-        console.log w
-        if w < 400
-          # .btn
-          options.btnSize = ''
-          options.thumbnailSize = (58-2)
-          options.thumbnailLimit = (w-69) / options.thumbnailSize
-        else 
-          # .btn-lg
-          options.thumbnailLimit = (w-88) / options.thumbnailSize
 
-        whitespace = options.thumbnailLimit % 1
-        console.log "whitespace=" + whitespace + ", pixels=" +(whitespace * options.thumbnailSize)
-        if whitespace * options.thumbnailSize < 28 
-          # leave room for .badge
-          options.thumbnailLimit -= 1
-        options.thumbnailLimit = Math.floor(options.thumbnailLimit)  
 
-        console.log "thumbnailLimit=" + options.thumbnailLimit
-          
-        return 
-
-      parseMoments = (cameraRollDates)->
+      # expecting { `date`: [array of photoIds]}
+      parseMomentsFrom_TestDataCameraRoll = (cameraRollDates)->
         DAY_MS = 24*60*60*1000 
         dates = _.keys cameraRollDates
         dates.sort()
@@ -95,9 +68,7 @@ angular.module('snappiOtgApp')
 
 
       init = ()->
-        setSizes()
-        $scope.options = options
-        $scope.cameraRollMoments = orderMomentsByDescendingKey parseMoments(TEST_DATA.cameraRoll), 2
+        $scope.cameraRollMoments = orderMomentsByDescendingKey parseMomentsFrom_TestDataCameraRoll(TEST_DATA.cameraRoll), 2
 
       
       $scope.cameraRollMoments = null
