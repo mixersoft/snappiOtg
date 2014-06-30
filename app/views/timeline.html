@@ -16,7 +16,8 @@
     </div>
   </div>
 
-  <otg-moment otg-model="favoriteMoments"></otg-moment>
+  <otg-moment otg-model="favoriteMoments" ng-if="!showGallery"></otg-moment>
+  <otg-gallery otg-model="moment" ng-if="showGallery"></otg-gallery>
 
 </div> 
 

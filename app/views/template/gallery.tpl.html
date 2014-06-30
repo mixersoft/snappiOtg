@@ -1,0 +1,8 @@
+<p>This is the template/gallery.tpl view.</p>
+ <!-- template for directives/gallery.js  -->
+<ul class="">
+  <li ng-repeat="photo in moment.value | limitTo:options.perpage">
+    <otg-thumbnail otg-photo-id="photo" otg-options="$parent.options"></otg-thumbnail>
+  </li>
+  <li ng-show="{{moment.value.length > options.perpage}}"><span class="badge">{{moment.value.length}}</span></li>
+</ul>
