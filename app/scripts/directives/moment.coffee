@@ -47,6 +47,7 @@ angular.module('snappiOtgApp')
         restrict: 'EA'
         scope : 
           moments: '=otgModel'
+          select: '=onSelect'
         # replace: true
         # require: ''
         link: (scope, element, attrs) ->

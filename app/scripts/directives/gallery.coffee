@@ -25,6 +25,7 @@ angular.module('snappiOtgApp')
           moment: '=otgModel'
         link: (scope, element, attrs) ->
           scope.options = options
+          scope.title = scope.day.key
           return
       }
   ]

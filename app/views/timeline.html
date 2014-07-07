@@ -1,10 +1,11 @@
  <div id="timeline">
   <div class="section-header panel" >
     <div class="panel-heading">
-      <h3 class="panel-title"><i class="icon fa fa-picture-o"></i> Timeline</h3>
+      <h3 class="panel-title"><i class="icon fa fa-picture-o"></i> Timeline 
+      <button class='btn btn-xs btn-info pull-right' ng-show="{{showGallery}}" ng-click="goto('/timeline')">Back</button></h3>
     </div>
     <div class="panel-body">
-      Find all your Top Pix at the tip of your fingers!
+      {{title}}
     </div>
     <div class="panel-footer center-block text-center">
       <i class="pull-down fa fa-chevron-down"></i>
@@ -16,7 +17,7 @@
     </div>
   </div>
 
-  <otg-moment otg-model="favoriteMoments" ng-if="!showGallery"></otg-moment>
+  <otg-moment otg-model="favoriteMoments" on-select="select"  ng-if="!showGallery"></otg-moment>
   <otg-gallery otg-model="moment" ng-if="showGallery"></otg-gallery>
 
 </div> 

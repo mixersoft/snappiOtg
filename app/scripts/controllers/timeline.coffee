@@ -44,6 +44,7 @@ angular.module('snappiOtgApp')
             found = found.where {key: galleryId}
               .value()
             $scope.moment = if found.length then found[0] else {key: galleryId, value:[]}
+            $scope.title = "Your Top Picks for: " + galleryId
           console.log $scope.moment
 
 
@@ -110,8 +111,18 @@ angular.module('snappiOtgApp')
         console.log reversed if levels==2
         return reversed  
 
+      $scope.select = ($ev)->
+        scope = this;
+        target = $ev.currentTarget
+        # target = target.parentNode while target.tagName != 'BUTTON'
+        $scope.goto "/timeline/gallery/"+scope.day.key
+        return
 
+      $scope.goto = (target)->
+        console.log target
+        $location.path(target)  
 
+      $scope.title = "Find all your Top Pix at the tip of your fingers!"
 
       $scope.galleryGlow = ()->
         return
@@ -136,7 +147,7 @@ angular.module('snappiOtgApp')
             console.log "socialPlugin share"
         return
 
-      $scope.goto = (ev, i, belongsTo)->
+      $scope.gotoParent = (ev, i, belongsTo)->
         return
 
       init()
