@@ -33,6 +33,8 @@ angular.module('snappiOtgApp')
             controller: controller
           }
           angular.forEach [
+              'fromDate'  # model to store fromDate value
+              'toDate'    # model to store toDate value
               'placement',
               'container',
               'delay',
@@ -56,7 +58,9 @@ angular.module('snappiOtgApp')
               options[key] = attr[key] if angular.isDefined(attr[key])
           # // Initialize datepicker
           options.dateFormat = 'yyyy-MM-dd' if (isNative && options.useNative)
-          datepicker = $datepicker(element, controller, options);
+          options.fromDate = options.fromDate || 'fromDate'
+          options.toDate = options.toDate || 'toDate'
+          scope.$datepicker = datepicker = $datepicker(element, controller, options);
           options = datepicker.$options;
           # // Observe attributes for changes
           angular.forEach [
@@ -68,6 +72,7 @@ angular.module('snappiOtgApp')
                   # // console.warn('attr.$observe(%s)=%o', key, newValue);
                   if (newValue == 'today') 
                     today = new Date();
+                    today.setHours(0,0,0,0)
                     datepicker.$options[key] = +new Date(today.getFullYear(), today.getMonth(), today.getDate() + (key == 'maxDate' ? 1 : 0), 0, 0, 0, key == 'minDate' ? 0 : -1);
                   else if (angular.isString(newValue) && newValue.match(/^".+"$/)) 
                     # // Support {{ dateObj }}
@@ -91,7 +96,7 @@ angular.module('snappiOtgApp')
             }
           # // viewValue -> $parsers -> modelValue
           controller.$parsers.unshift (viewValue)-> 
-            # // console.warn('$parser("%s"): viewValue=%o', element.attr('ng-model'), viewValue);
+            console.warn('$parser("%s"): viewValue=%o', element.attr('ng-model'), viewValue);
             # // Null values should correctly reset the model value & validity
             if (!viewValue) 
               controller.$setValidity('date', true);
@@ -122,7 +127,6 @@ angular.module('snappiOtgApp')
           # // modelValue -> $formatters -> viewValue
           controller.$formatters.push (modelValue)->
             # // console.warn('$formatter("%s"): modelValue=%o (%o)', element.attr('ng-model'), modelValue, typeof modelValue);
-            date;
             if (angular.isUndefined(modelValue) || modelValue == null) 
               date = NaN;
             else if (angular.isDate(modelValue)) 
@@ -140,12 +144,90 @@ angular.module('snappiOtgApp')
             return controller.$dateValue;
           # // viewValue -> element
           controller.$render = ()->
-            console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
+            # console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
             element.val(!controller.$dateValue || isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.dateFormat));
           # // Garbage collection
           scope.$on '$destroy', ()-> 
             datepicker.destroy();
             options = null;
             datepicker = null;
+
+
+          # 
+          # overrides
+          #
+          datepicker.hide = ()->
+            # prevent hide()
+            # console.log "override hide()"
+            return    
+
+          datepicker.select = (date, keep)-> 
+            # console.warn('$datepicker.selectdatepicker.$updateSelected ', date, scope.$mode);
+            controller.$dateValue = new Date(date);
+            controller.$dateValue.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+
+            if !controller.$fromDate
+              controller.$fromDate = _.clone controller.$dateValue 
+            else if controller.$dateValue < controller.$fromDate
+              controller.$fromDate = _.clone controller.$dateValue 
+              controller.$toDate = null 
+            else if controller.$dateValue.getTime() == controller.$fromDate.getTime()
+              controller.$fromDate = null 
+              controller.$toDate = null  
+            else 
+              controller.$toDate = _.clone controller.$dateValue 
+            # console.log "from="+controller.$fromDate+", to="+controller.$toDate
+            # update models for from input 
+            parent = element.scope()
+            parent[options.fromDate] = controller.$fromDate || ""
+            parent[options.toDate] = controller.$toDate || ""
+
+            if (!scope.$mode || keep) 
+              controller.$setViewValue(controller.$dateValue);
+              controller.$render();
+              if (options.autoclose && !keep) 
+                datepicker.hide(true);
+              
+            else 
+              angular.extend(viewDate, {
+                year: date.getFullYear(),
+                month: date.getMonth(),
+                date: date.getDate()
+              });
+              datepicker.setMode(scope.$mode - 1);
+              datepicker.$build();
+
+            return 
+            
+
+          datepicker.$isSelected = (date)->
+            if !controller.$toDate
+              return controller.$fromDate && date.getFullYear() == controller.$fromDate.getFullYear() && date.getMonth() == controller.$fromDate.getMonth() && date.getDate() == controller.$fromDate.getDate();
+            else 
+              return controller.$fromDate <= date && date <= controller.$toDate
+            
+          datepicker.$updateSelected = ()->
+            scope = this.$scope
+            for i in [0..scope.rows.length]
+              angular.forEach scope.rows[i], (el)->
+                el.selected = datepicker.$isSelected(el.date);
+                return
+
+
+            
+
+          datepicker.$promise.then ()->
+            # show immediately, do NOT hide
+            datepicker.show()
+            _build = datepicker.$views[0].build
+            datepicker.$views[0].build = ()->
+              # update selected after changing months
+              _build.apply( datepicker.$views[0], arguments) 
+              datepicker.$updateSelected()
+
+
+
+
+
       }
   ]

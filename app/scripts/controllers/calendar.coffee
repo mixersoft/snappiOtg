@@ -7,6 +7,9 @@
  # # CalendarCtrl
  # Controller of the snappiOtgApp
 ###
+
+
+
 angular.module('snappiOtgApp')
   .config ($datepickerProvider)->
     angular.extend $datepickerProvider.defaults, {
@@ -24,9 +27,15 @@ angular.module('snappiOtgApp')
 
 
     $scope.todayDate = new Date()
+    $scope.todayDate.setHours(0,0,0,0)
     $scope.fromDate = null;
     $scope.toDate = null;
+
+    init = ()->
+      return
 
     $scope.goto = (target)->
       console.log target
       $location.path(target)
+
+    init()

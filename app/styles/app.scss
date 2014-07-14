@@ -92,6 +92,11 @@ header.navbar .aside .aside-dialog {
 }
 
 #calendar {
+  .dropdown-menu.datepicker {
+    position: static;
+    margin-bottom: 10px;
+
+  }
   .datepicker.dropdown-menu button {
     outline: 0;
     border: 0;

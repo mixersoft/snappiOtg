@@ -5,26 +5,22 @@
   <form name="calendarDatepickerForm" class="form-inline" role="form">
     <!-- Date range example -->
     <div class="form-group">
-      <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range <small>(dynamic)</small></label><br>
+      <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range </label><br>
       <div class="form-group">
-        <input type="text" class="form-control from-date bs-datepicker-input" ng-model="fromDate" placeholder="From" 
+        <input type="text" class="form-control hidden " ng-model="selectedDate" placeholder="last" 
         snappi-datepicker
-        data-min-date="{{todayDate}}" data-max-date="{{toDate}}"
+        data-min-date="{{todayDate}}" 
+        xxx-data-max-date="{{toDate}}"
         data-autoclose="false"
         data-trigger="focus"
         data-start-view="0"
         data-start-week="1"
+        data-from-date="fromDate"
+        data-to-date="toDate"
         >
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control to-date bs-datepicker-input" ng-model="toDate" placeholder="To" 
-        snappi-datepicker
-        data-min-date="{{fromDate}}"
-        data-autoclose="false"
-        data-trigger="focus"
-        data-start-view="0"
-        data-placement="bottom-right"
-        data-start-week="1"
+        <input type="text" class="form-control from-date snappi-datepicker-input" ng-value="fromDate" placeholder="From" 
+        >
+        <input type="text" class="form-control to-date snappi-datepicker-input" ng-value="toDate" placeholder="To" 
         >
       </div>
     </div>
