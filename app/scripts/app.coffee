@@ -22,9 +22,9 @@ angular
   .config ($locationProvider, $routeProvider) ->
     $locationProvider.html5Mode  false
     $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
+      # .when '/',
+      #   templateUrl: 'views/main.html'
+      #   controller: 'MainCtrl'
       .when '/main',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl' 
@@ -47,7 +47,7 @@ angular
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/calendar'
   .run ($rootScope, $location, $anchorScroll, $timeout, $routeParams)->
     return
 
