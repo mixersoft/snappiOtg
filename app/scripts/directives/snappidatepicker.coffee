@@ -88,6 +88,18 @@ angular.module('snappiOtgApp')
           # // Watch model for changes
           scope.$watch(attr.ngModel, (newValue, oldValue)-> 
               datepicker.update(controller.$dateValue);
+              scope = element.scope()
+              # scope[attr.ngModel] = newValue
+              switch controller.$updateField
+                when options.fromDate
+                  scope[options.fromDate] = newValue
+                  scope[options.toDate] = ""
+                when options.toDate
+                  scope[options.toDate] = newValue  
+                when "reset"
+                  scope[options.fromDate] = ""
+                  scope[options.toDate] = ""
+              return
             , true)
           dateParser = $dateParser {
               format: options.dateFormat,
@@ -96,7 +108,7 @@ angular.module('snappiOtgApp')
             }
           # // viewValue -> $parsers -> modelValue
           controller.$parsers.unshift (viewValue)-> 
-            console.warn('$parser("%s"): viewValue=%o', element.attr('ng-model'), viewValue);
+            # console.warn('$parser("%s"): viewValue=%o', element.attr('ng-model'), viewValue);
             # // Null values should correctly reset the model value & validity
             if (!viewValue) 
               controller.$setValidity('date', true);
@@ -167,20 +179,25 @@ angular.module('snappiOtgApp')
             controller.$dateValue.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
 
             if !controller.$fromDate
+              controller.$updateField = options.fromDate
               controller.$fromDate = _.clone controller.$dateValue 
             else if controller.$dateValue < controller.$fromDate
+              controller.$updateField = options.fromDate
               controller.$fromDate = _.clone controller.$dateValue 
               controller.$toDate = null 
             else if controller.$dateValue.getTime() == controller.$fromDate.getTime()
+              controller.$updateField = "reset"
               controller.$fromDate = null 
               controller.$toDate = null  
             else 
+              controller.$updateField = options.toDate
               controller.$toDate = _.clone controller.$dateValue 
             # console.log "from="+controller.$fromDate+", to="+controller.$toDate
             # update models for from input 
             parent = element.scope()
-            parent[options.fromDate] = controller.$fromDate || ""
-            parent[options.toDate] = controller.$toDate || ""
+            parent[attr.ngModel] = controller.$dateValue 
+            # parent[options.fromDate] = controller.$fromDate || ""
+            # parent[options.toDate] = controller.$toDate || ""
 
             if (!scope.$mode || keep) 
               controller.$setViewValue(controller.$dateValue);

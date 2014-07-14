@@ -92,6 +92,9 @@ header.navbar .aside .aside-dialog {
 }
 
 #calendar {
+  .fa-calendar.disabled {
+    color: lightgrey;
+  }
   .dropdown-menu.datepicker {
     position: static;
     margin-bottom: 10px;

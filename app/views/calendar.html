@@ -1,20 +1,43 @@
 
 <div id="calendar">
-  <h4>Choose Your Days</h4>
-  <p>Choose the days that you'll be On-the-Go and we'll scan every photo taken on those days</p>
+  <div class="section-header panel" >
+    <div class="panel-heading">
+      <h3 class="panel-title">Choose Your Days</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+        <p>Choose the days that you'll be On-the-Go and we'll scan every photo taken on those days</p>
+        </div>
+        <div class="col-md-6">
+        <button class="btn btn-info btn-lg" ng-click='goto("/date")'>Choose Dates from my Camera Roll</button>
+        </div>
+      </div>
+      <form name="dateDatepickerForm" class="form-inline" role="form">
+      </form>
+    </div>
+    <div class="panel-footer center-block text-center">
+      <i class="fa fa-chevron-down pull-down"></i>
+    </div>
+  </div>
+  
   <form name="calendarDatepickerForm" class="form-inline" role="form">
     <!-- Date range example -->
     <div class="form-group">
-      <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range </label><br>
+      <label class="control-label">
+        <i class="fa fa-calendar" ng-class="{disabled: fromDate && !toDate}"></i> 
+        <i class="fa fa-arrows-h"></i> 
+        <i class="fa fa-calendar" ng-class="{disabled: !fromDate}"></i> Date range </label><br>
       <div class="form-group">
-        <input type="text" class="form-control hidden " ng-model="selectedDate" placeholder="last" 
+        <input type="text" class="form-control hidden" ng-model="lastdate" placeholder="last" 
         snappi-datepicker
         data-min-date="{{todayDate}}" 
-        xxx-data-max-date="{{toDate}}"
-        data-autoclose="false"
+        data-autoclose="0"
         data-trigger="focus"
         data-start-view="0"
         data-start-week="1"
+        data-date-type="string"
+        data-date-format='yyyy-MM-dd'
         data-from-date="fromDate"
         data-to-date="toDate"
         >
@@ -26,6 +49,5 @@
     </div>
   </form>
 
-  <button class="btn btn-info btn-lg" ng-click='goto("/date")'>Choose Dates from my Camera Roll</button>
   <p>&nbsp;</p>
 </div>
