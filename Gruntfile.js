@@ -187,6 +187,12 @@ module.exports = function (grunt) {
           src: '{,*/}*.coffee',
           dest: '.tmp/spec',
           ext: '.js'
+        },{
+            expand: true,
+            cwd: 'test',
+            src: 'karma.conf.coffee',
+            dest: 'test',
+            ext: '.conf.js'
         }]
       }
     },
@@ -349,6 +355,18 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      devjs: {    // instead of usemin:uglify
+        expand: true,
+        cwd: '.tmp/concat/scripts',
+        src: '*.js',
+        dest: '<%= yeoman.dist %>/scripts'
+      },
+      devhtml: {
+        expand: true,
+        cwd: 'app/views',
+        src: '**/*.html',
+        dest: '<%= yeoman.dist %>/views'        
+      },
       dist: {
         files: [{
           expand: true,
@@ -379,6 +397,20 @@ module.exports = function (grunt) {
           src: '*',
           dest: '<%= yeoman.dist %>/fonts/'  
         }]
+      },
+      steroids: {
+        files: [{
+          expand: true,
+          cwd: 'www',
+          src: ['*.xml','loading.html'],
+          dest: '<%= yeoman.dist %>'
+        },{
+          expand: true,
+          cwd: 'www/components',
+          src: ['**/*.js', '**/*.css', 'font-awesome/fonts/*'],
+          dest: '<%= yeoman.dist %>/bower_components'        
+        },
+        ]
       },
       styles: {
         expand: true,
@@ -447,13 +479,18 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'copy:dist',
+    'copy:steroids','steroids-make',
     'useminPrepare',
-    'concurrent:dist',
+    // 'concurrent:dist',
+      'coffee',
+      'compass:dist',
+      'imagemin',
+      'svgmin',    
     'autoprefixer',
     'concat',
     'ngmin',
-    'copy:dist',
-    'cdnify',
+    // 'cdnify',
     'cssmin',
     'uglify',
     'filerev',
@@ -461,9 +498,52 @@ module.exports = function (grunt) {
     // 'htmlmin'
   ]);
 
+  grunt.registerTask('devbuild', [
+    // 'newer:jshint',
+    'clean:dist',
+    'wiredep',
+    'copy:dist',
+    'copy:steroids','steroids-make',
+    'useminPrepare',
+    // 'concurrent:dist',
+      'coffee',
+      'compass:dist',
+      'imagemin',
+      'svgmin',
+    'autoprefixer',
+    'concat',
+    // 'ngmin',
+    // 'cdnify',
+    'cssmin',
+    'copy:devjs',
+    // 'uglify',
+    // 'filerev',
+    'usemin',
+  ]);
+
   grunt.registerTask('default', [
+    'newer:jshint',
+    'devbuild',
+    // 'build'
+  ]);
+
+
+  grunt.registerTask('default-0', [
     'newer:jshint',
     'test',
     'build'
   ]);
+
+
+  /*
+   * add tasks for Steroids Connect 
+   */
+  grunt.loadNpmTasks('grunt-steroids');
+
+
+  grunt.registerTask('steroids-make', [
+    'steroids-cordova-merges',
+    'steroids-configure'
+  ]);
+
 };

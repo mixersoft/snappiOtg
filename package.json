@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "^0.4.1",
+    "grunt-steroids": "0.x",
+    "grunt": "0.4.4",                 
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
     "grunt-contrib-clean": "^0.5.0",
@@ -36,7 +37,8 @@
     "karma-coffee-preprocessor": "^0.2.1"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0",
+    "steroids": "3.1.9"
   },
   "scripts": {
     "test": "grunt test"
