@@ -2,15 +2,16 @@
 <div id="date">
   <div class="section-header panel" >
     <div class="panel-heading">
-      <h3 class="panel-title">Choose Days From Your Camera Roll</h3>
+      <div class="btn-group pushright">
+        <button class="btn btn-default btn-sm" ng-click='goto("/calendar")'><i class="fa fa-calendar"></i></button>
+        <button class="btn btn-success btn-sm"><i class="fa fa-picture-o"></i></button>
+      </div>      
+      <h3 class="panel-title">Choose Days</h3>
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
         <p>Choose days from your Camera Roll and we'll scan every photo taken on those days</p>
-        </div>
-        <div class="col-md-6">
-        <button class="btn btn-info btn-lg" ng-click='goto("/calendar")'>Choose Days from a Calendar</button>
         </div>
       </div>
       <form name="dateDatepickerForm" class="form-inline" role="form">

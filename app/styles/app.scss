@@ -92,6 +92,17 @@ header.navbar .aside .aside-dialog {
   }
 }
 
+#calendar, #date {
+  .panel .panel-heading {
+    position: relative;
+    .btn-group.pushright {
+      position: absolute;
+      right: 15px;
+      top: 4px;
+    }
+  }
+}
+
 #calendar {
   .fa-calendar.disabled {
     color: lightgrey;
