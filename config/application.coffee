@@ -1,10 +1,11 @@
 # For an explanation of the steroids.config properties, see the guide at
 # http://guides.appgyver.com/steroids/guides/project_configuration/config-application-coffee/
 
-steroids.config.name = "blank"
+steroids.config.name = "OnTheGo"
 
 # ## Start Location
 steroids.config.location = "http://localhost/index.html"
+# steroids.config.location = "http://localhost/assetpicker.html"
 
 # ## Tab Bar
 # steroids.config.tabBar.enabled = true
