@@ -20,4 +20,6 @@
 
 }).call(this);
 
-//# sourceMappingURL=karma.conf.js.map
+/*
+//@ sourceMappingURL=karma.conf.js.map
+*/
