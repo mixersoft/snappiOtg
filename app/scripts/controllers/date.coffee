@@ -13,7 +13,9 @@ angular.module('snappiOtgApp')
     '$location'
     '$dateParser'
     'TEST_DATA'
-    ($scope, $location, $dateParser, TEST_DATA) ->
+    'snappiAssetsPicker'
+    '$timeout'
+    ($scope, $location, $dateParser, TEST_DATA, $snappiAssetsPicker, $timeout)->
       $scope.awesomeThings = [
         'HTML5 Boilerplate'
         'AngularJS'
@@ -53,6 +55,29 @@ angular.module('snappiOtgApp')
         console.log moments 
         return moments
 
+
+      ### expecting { 
+        lastDate:
+        assets: [
+          id: UUID.ext
+          data:
+            DateTimeOriginal: date string
+        ]
+      } ###
+      parseMomentsFrom_MapPhotos = (mappedPhotos)->
+        DAY_MS = 24*60*60*1000 
+        momentsObj = _.reduce mappedPhotos.assets, (result, o)->
+            datetimeStr =  o.data?.DateTimeOriginal || ""
+            date = datetimeStr[0..9].replace(/:/g,'-')
+            if result[date]?
+              result[date].push o.id
+            else 
+              result[date] = [ o.id ] 
+            return result
+          , {}
+
+        return parseMomentsFrom_TestDataCameraRoll momentsObj   
+
       # reformat object as an array of {key:, value: }
       orderMomentsByDescendingKey = (o, levels=1)->
         keys = _.keys( o ).sort().reverse()
@@ -65,10 +90,14 @@ angular.module('snappiOtgApp')
         console.log reversed if levels==2
         return reversed
 
+          
 
 
       init = ()->
-        $scope.cameraRollMoments = orderMomentsByDescendingKey parseMomentsFrom_TestDataCameraRoll(TEST_DATA.cameraRoll), 2
+        if window.deviceReady
+          $scope.mapPhotos() 
+        else $scope.cameraRollMoments = orderMomentsByDescendingKey parseMomentsFrom_TestDataCameraRoll(TEST_DATA.cameraRoll), 2
+        # console.log $scope.cameraRollMoments
 
       
       $scope.cameraRollMoments = null
@@ -83,6 +112,22 @@ angular.module('snappiOtgApp')
       $scope.goto = (target)->
         console.log target
         $location.path(target)  
+
+      $scope.mapPhotos = ()->
+        $snappiAssetsPicker.log "*** $scope.mapPhotos() ***" 
+        $snappiAssetsPicker.mapPhotos().then (mappedPhotos)->
+          console.log mappedPhotos
+          $scope.cameraRollMoments = orderMomentsByDescendingKey parseMomentsFrom_MapPhotos(mappedPhotos), 2  
+          return mappedPhotos
+
+      $scope.getPreviewSrc = (uuidExt)->
+        # console.log "getPreviewSrc clicked"
+        # uuidExt = "A9A99265-C590-47C7-9A54-252F1684C46E.JPG"
+        console.log "getPreviewSrc for uuidExt="+uuidExt
+        return $snappiAssetsPicker.getPreviewSrc(uuidExt).then (o)->
+          console.log "getPreviewSrc() DONE <<<<<<< dataURL="+o.dataURL.preview[0..50]
+          return o.dataURL.preview
+
 
       init()
   ]

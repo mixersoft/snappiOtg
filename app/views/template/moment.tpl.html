@@ -8,7 +8,7 @@
         <div>{{day.key | date:'dd MMM'}}</div>
         <div class="day">{{day.key | date:'EEE'}}</div>
       </button>
-      <li ng-repeat="photo in day.value | limitTo:options.thumbnailLimit"><img ng-src="http://lorempixel.com/{{options.thumbnailSize}}/{{options.thumbnailSize}}?{{photo}}" title="Photo {{photo}}" 
+      <li ng-repeat="photo in day.value | limitTo:options.thumbnailLimit"><img lazy-src="{{photo}}" title="Photo {{photo}}" 
       width="{{options.thumbnailSize}}" 
       height="{{options.thumbnailSize}}"></li>
       <li ng-show="{{day.value.length > options.thumbnailLimit}}"><span class="badge pull-right">{{day.value.length}}</span></li>

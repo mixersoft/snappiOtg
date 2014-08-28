@@ -7,6 +7,23 @@
  # # otg-moment
 ###
 angular.module('snappiOtgApp')
+  # uses $q.promise to load src 
+  .directive 'lazySrc', ()->
+    return {
+      restrict: 'A'
+      scope: false
+      link: (scope, element, attrs) ->
+        uuidExt = attrs.lazySrc
+        options = scope.options
+        qGetSrc = scope.qGetSrc
+        lorempixel = 'http://lorempixel.com/'+options.thumbnailSize+'/'+options.thumbnailSize+'?'+uuidExt
+        element.attr('src', lorempixel)
+        if uuidExt.length == 40
+          qGetSrc(uuidExt).then (dataUrl)->
+            console.log "return from lazy-src directive getSrc()"
+            element.attr('src', dataUrl)
+
+    }
   .directive 'otgMoment', [
     '$window'
     ($window)->
@@ -42,12 +59,14 @@ angular.module('snappiOtgApp')
         console.log "thumbnailLimit=" + cfg.thumbnailLimit
         return cfg
 
+
       return {
         templateUrl: 'views/template/moment.tpl.html'
         restrict: 'EA'
         scope : 
           moments: '=otgModel'
           select: '=onSelect'
+          qGetSrc: '=qGetSrc'   # this is a $q.promise
         # replace: true
         # require: ''
         link: (scope, element, attrs) ->
