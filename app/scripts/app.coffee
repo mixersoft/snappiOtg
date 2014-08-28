@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
     'mgcrea.ngStrap'
+    # 'snappiAssetPicker'
   ])
   .constant('version', 'v0.1.0')
   .config ($locationProvider, $routeProvider) ->
@@ -51,3 +52,17 @@ angular
   .run ($rootScope, $location, $anchorScroll, $timeout, $routeParams)->
     return
 
+
+# steroids bootstrap
+window.deviceReady = false
+
+timeout = setTimeout ()->
+    console.log("WARNING: deviceready TIMEOUT")
+  , 5000
+
+document.addEventListener "deviceready", ()->
+  clearTimeout timeout
+  location.reload() if !navigator.camera?
+  window.deviceReady = !!navigator.camera
+  steroids.logger.log "steroids deviceready"
+  # location.reload() if window.requestFileSystem == undefined

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/app.css">
     <!-- endbuild -->
+    <script src="http://localhost/cordova.js"></script>
+    <script src="bower_components/steroids-js/steroids.js"></script>
   </head>
   <body ng-app="snappiOtgApp" ontouchstart ng-controller="HeaderCtrl">
     <!--[if lt IE 7]>
@@ -91,6 +93,7 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
@@ -118,6 +121,7 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/services/snappi-assets-picker.js"></script>
     <script src="scripts/services/appconfig.js"></script>
     <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -134,6 +138,7 @@
     <script src="scripts/directives/gallery.js"></script>
     <script src="scripts/directives/thumbnail.js"></script>
     <script src="scripts/directives/snappidatepicker.js"></script>
+    
     <!-- endbuild -->
 </body>
 </html>

@@ -2,6 +2,7 @@
   "name": "snappiOtg",
   "version": "0.1.0",
   "dependencies": {
+    "steroids-js": "3.1.x",
     "angular": "^1.2.18",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
@@ -23,8 +24,5 @@
     "angular-mocks": "^1.2.18",
     "angular-scenario": "^1.2.18"
   },
-  "appPath": "app",
-  "resolutions": {
-    "angular": "^1.2.18"
-  }
+  "appPath": "app"
 }
